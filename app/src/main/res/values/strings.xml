@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Portfolio</string>
+    <string name="text_location">Location</string>
+    <string name="text_location_dropdown_expanded">Location Dropdown Expanded</string>
+    <string name="text_location_dropdown_not_expanded">Location Dropdown Not Expanded</string>
+    <string name="text_notification">notification</string>
+    <string name="btn_search">Search</string>
+    <string name="btn_search_bar">Search bar</string>
+    <string name="home_rental_search_bar_placeholder">Search address, or near you</string>
+    <string name="text_first_tab_house">House</string>
+    <string name="text_first_tab_apartment">Apartment</string>
+    <string name="text_first_tab_villa">Villa</string>
+    <string name="text_first_tab_hotel">Hotel</string>
+    <string name="text_title_near_by_me_section">Near by me</string>
+    <string name="text_random_image">Random Image</string>
+    <string name="text_see_more">See more</string>
+</resources>
