@@ -69,6 +69,5 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
-    implementation(libs.glide)
-    kapt(libs.glide.compiler)
+    implementation(libs.coil.compose)
 }
