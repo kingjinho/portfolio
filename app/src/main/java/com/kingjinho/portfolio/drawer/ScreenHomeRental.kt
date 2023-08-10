@@ -3,6 +3,7 @@ package com.kingjinho.portfolio.drawer
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,13 +19,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,16 +44,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.kingjinho.portfolio.R
 import com.kingjinho.portfolio.ui.theme.PortfolioTheme
 
@@ -63,6 +66,7 @@ fun ScreenHomeRental() {
         locationList.toMutableStateList()
     }
     var inputText by remember { mutableStateOf("") }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
@@ -209,6 +213,7 @@ fun RentListByType(modifier: Modifier = Modifier) {
             R.string.text_first_tab_hotel,
             R.string.text_first_tab_villa
         )
+
         TabRow(
             selectedTabIndex = selectedIndex,
             modifier = modifier.padding(horizontal = 20.dp)
@@ -233,33 +238,28 @@ fun RentListByType(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SectionNearByMe(modifier: Modifier = Modifier) {
+fun Section(
+    modifier: Modifier = Modifier,
+    section: RentalSection,
+    content: @Composable () -> Unit = {}
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.padding(top = 24.dp)
+        modifier = modifier.padding(top = 32.dp)
     ) {
-        Row(
-            modifier = modifier.padding(horizontal = 20.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.text_title_near_by_me_section),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight(500),
-                    color = Color(0xFF000000),
-                ),
-                modifier = modifier.weight(1f)
-            )
-            Spacer(modifier = modifier.padding(vertical = 8.dp))
-            Text(
-                text = stringResource(R.string.text_see_more),
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight(400),
-                    color = Color(0xFF858585),
-                )
-            )
-        }
+        SectionHeader(modifier, section)
+        content()
+    }
+}
+
+@Composable
+private fun SectionNearByMe(
+    modifier: Modifier = Modifier,
+) {
+    Section(
+        modifier = modifier,
+        section = RentalSection.Nearby
+    ) {
         LazyRow(
             contentPadding = PaddingValues(horizontal = 20.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -271,27 +271,69 @@ fun SectionNearByMe(modifier: Modifier = Modifier) {
                         .width(222.dp)
                         .height(272.dp)
                 ) {
-                    GlideImage(
-                        data = getRandomImageUrl(),
-                        contentDescription = stringResource(
-                            id = R.string.text_random_image
-                        ),
-                        contentScale = ContentScale.Crop,
-                        modifier = modifier
-                            .width(222.dp)
-                            .height(272.dp)
-                    )
+                    Box {
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(getRandomImageRes())
+                                .build(),
+                            contentDescription = stringResource(
+                                id = R.string.text_random_image
+                            ),
+                            contentScale = ContentScale.Crop,
+                        )
 
-                    Image(
-                        painter = painterResource(id = getRandomImageRes()),
-                        contentDescription = stringResource(
-                            id = R.string.text_random_image
-                        ),
-                        contentScale = ContentScale.Crop,
-                        modifier = modifier
-                            .width(222.dp)
-                            .height(272.dp)
-                    )
+                        Box(modifier = Modifier
+                            .matchParentSize()
+                            .background(
+                            brush = Brush.verticalGradient(
+                                colors = listOf(
+                                    Color(0x000000CC),
+                                    Color(0xFF0D0D0D)
+                                )
+                            )
+                        ))
+
+                        Column(
+                            modifier = Modifier
+                                .align(Alignment.BottomStart)
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = "Sample House",
+                                style = TextStyle(
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight(700),
+                                    color = Color.White
+                                )
+                            )
+
+                            Text(
+                                text = "Sample Location",
+                                style = TextStyle(
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight(400),
+                                    color = Color(0xFFD7D7D7)
+                                )
+                            )
+                        }
+
+                        Surface(
+                            shape = MaterialTheme.shapes.extraLarge,
+                            color = Color.Black.copy(alpha = 0.5f),
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = "${IntRange(1, 10).random()}km",
+                                style = TextStyle(
+                                    fontSize = 12.sp,
+                                    color = Color.White
+                                ),
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -299,9 +341,93 @@ fun SectionNearByMe(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SectionBestDeals(modifier: Modifier = Modifier) {
-    Row {
+private fun SectionBestDeals(
+    modifier: Modifier = Modifier,
+) {
+    Section(
+        modifier = Modifier,
+        section = RentalSection.BestDeal
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier.padding(horizontal = 20.dp)
+        ) {
+            repeat(4) {
+                Row {
+                    Surface(
+                        shape = MaterialTheme.shapes.large,
+                        modifier = Modifier
+                            .width(70.dp)
+                            .height(70.dp)
+                    ) {
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(getRandomImageRes())
+                                .build(),
+                            contentDescription = stringResource(
+                                id = R.string.text_random_image
+                            ),
+                            contentScale = ContentScale.Crop,
+                            modifier = modifier
+                                .size(70.dp)
+                        )
+                    }
 
+                    Column {
+                        Text(
+                            text = "Orchard Hotel",
+                            modifier = modifier.padding(start = 16.dp)
+                        )
+                        Text(
+                            text = "$1,000,000 / Year",
+                            modifier = modifier.padding(start = 16.dp)
+                        )
+                        Row {
+                            Image(
+                                imageVector = Icons.Outlined.Star,
+                                contentDescription = stringResource(id = R.string.text_star),
+                                modifier = modifier.padding(start = 16.dp)
+                            )
+                            Text(text = "4.8", modifier = modifier.padding(start = 4.dp))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SectionHeader(modifier: Modifier, section: RentalSection) {
+    Row(
+        modifier = modifier.padding(horizontal = 20.dp)
+    ) {
+        Text(
+            text = stringResource(section.sectionHeaderRes),
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontWeight = FontWeight(500),
+                color = Color(0xFF000000),
+            ),
+            modifier = modifier.weight(1f)
+        )
+        Spacer(modifier = modifier.padding(vertical = 8.dp))
+        Text(
+            text = stringResource(R.string.text_see_more),
+            style = TextStyle(
+                fontSize = 12.sp,
+                fontWeight = FontWeight(400),
+                color = Color(0xFF858585),
+            )
+        )
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Composable
+fun SectionBestDealsPreview() {
+    PortfolioTheme {
+        SectionBestDeals()
     }
 }
 
