@@ -62,32 +62,37 @@ import com.kingjinho.portfolio.ui.theme.PortfolioTheme
 @Composable
 fun ScreenHomeRental() {
 
-    val locations = remember {
-        locationList.toMutableStateList()
-    }
-    var inputText by remember { mutableStateOf("") }
-
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp)
+    CustomDrawer(
+        modifier = Modifier,
+        drawerContent = { Drawer() },
     ) {
-        item {
-            LocationHeader(
-                items = locations,
-                onNewLocationSelected = {
-                    locations.forEachIndexed { index, locationItem ->
-                        locationItem.isSelected = index == it
-                    }
-                }
-            )
-            SearchBar(
-                input = inputText,
-                onInputChanged = { inputText = it },
-                modifier = Modifier.padding(top = 24.dp)
-            )
+        val locations = remember {
+            locationList.toMutableStateList()
+        }
+        var inputText by remember { mutableStateOf("") }
 
-            RentListByType(modifier = Modifier.padding(top = 24.dp))
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentPadding = PaddingValues(top = 24.dp, bottom = 24.dp)
+        ) {
+            item {
+                LocationHeader(
+                    items = locations,
+                    onNewLocationSelected = {
+                        locations.forEachIndexed { index, locationItem ->
+                            locationItem.isSelected = index == it
+                        }
+                    }
+                )
+                SearchBar(
+                    input = inputText,
+                    onInputChanged = { inputText = it },
+                    modifier = Modifier.padding(top = 24.dp)
+                )
+
+                RentListByType(modifier = Modifier.padding(top = 24.dp))
+            }
         }
     }
 }
@@ -282,16 +287,18 @@ private fun SectionNearByMe(
                             contentScale = ContentScale.Crop,
                         )
 
-                        Box(modifier = Modifier
-                            .matchParentSize()
-                            .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(
-                                    Color(0x000000CC),
-                                    Color(0xFF0D0D0D)
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .background(
+                                    brush = Brush.verticalGradient(
+                                        colors = listOf(
+                                            Color(0x000000CC),
+                                            Color(0xFF0D0D0D)
+                                        )
+                                    )
                                 )
-                            )
-                        ))
+                        )
 
                         Column(
                             modifier = Modifier
