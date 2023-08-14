@@ -51,7 +51,7 @@ fun CustomDrawer(
     ) {
         Surface(
             color = drawerColor,
-            modifier = Modifier
+            modifier = modifier
                 .matchParentSize()
         ) {
             if (isClicked) {
@@ -60,7 +60,7 @@ fun CustomDrawer(
         }
 
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .animateContentSize()
                 .fillMaxHeight(
                     if (isClicked) {
@@ -73,17 +73,17 @@ fun CustomDrawer(
                 .align(Alignment.CenterEnd)
                 .then(
                     if (isClicked) {
-                        Modifier.layout { measurable, constraints ->
+                        modifier.layout { measurable, constraints ->
                             val placeable = measurable.measure(constraints)
                             layout(placeable.width, placeable.height) {
                                 placeable.placeRelative(600, 0)
                             }
                         }
                     } else {
-                        Modifier
+                        modifier
                     }
                 )) {
-            Box(modifier = Modifier
+            Box(modifier = modifier
                 .matchParentSize()
                 .background(
                     Color.White,
@@ -99,19 +99,19 @@ fun CustomDrawer(
 }
 
 @Composable
-fun Drawer() {
+fun Drawer(modifier: Modifier = Modifier) {
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .padding(top = 96.dp),
         verticalArrangement = Arrangement.spacedBy(35.dp)
     ) {
         itemsIndexed(drawerItems) { index, item ->
             DrawerItem(item = item)
             if (index == 2 || index == 5) {
-                Spacer(modifier = Modifier.padding(bottom = 35.dp))
+                Spacer(modifier = modifier.padding(bottom = 35.dp))
                 Divider(
                     color = Color.White,
-                    modifier = Modifier
+                    modifier = modifier
                         .fillMaxWidth(0.45f)
                         .padding(start = 4.dp)
                 )
@@ -136,7 +136,7 @@ fun DrawerItem(modifier: Modifier = Modifier, item: DrawerItem) {
                 stringResource(id = item.title)
             )
         )
-        Spacer(modifier = Modifier.padding(start = 10.dp))
+        Spacer(modifier = modifier.padding(start = 10.dp))
         Text(
             text = stringResource(id = item.title),
             style = TextStyle(
