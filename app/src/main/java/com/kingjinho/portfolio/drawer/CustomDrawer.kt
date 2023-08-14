@@ -36,8 +36,8 @@ import com.kingjinho.portfolio.R
 @Composable
 fun CustomDrawer(
     modifier: Modifier = Modifier,
-    drawerColor: Color = Color(0xFF0A8ED9),
     drawerContent: @Composable () -> Unit,
+    drawerColor: Color = Color(0xFF0A8ED9),
     bodyContent: @Composable () -> Unit
 ) {
     var isClicked by rememberSaveable {
