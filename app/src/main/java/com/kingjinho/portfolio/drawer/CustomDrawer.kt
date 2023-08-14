@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -83,7 +85,10 @@ fun CustomDrawer(
                 )) {
             Box(modifier = Modifier
                 .matchParentSize()
-                .background(Color.White)
+                .background(
+                    Color.White,
+                    shape = if (isClicked) MaterialTheme.shapes.large else RectangleShape
+                )
                 .clickable {
                     isClicked = !isClicked
                 }) {
@@ -104,7 +109,8 @@ fun Drawer() {
             DrawerItem(item = item)
             if (index == 2 || index == 5) {
                 Spacer(modifier = Modifier.padding(bottom = 35.dp))
-                Divider(color = Color.White,
+                Divider(
+                    color = Color.White,
                     modifier = Modifier
                         .fillMaxWidth(0.45f)
                         .padding(start = 4.dp)
