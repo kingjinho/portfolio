@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 fun BoxArea(
     modifier: Modifier = Modifier,
     height: Float = 1.0f,
-    player: TouchTouchPlayer,
+    player: HopScotchPlayer,
     onTouch: () -> Unit
 ) {
     Box(
