@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game
+package com.kingjinho.portfolio.game.touchtouch
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,6 +1,5 @@
-package com.kingjinho.portfolio.game
+package com.kingjinho.portfolio.game.touchtouch
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
