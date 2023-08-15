@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch
+package com.kingjinho.portfolio.game.hopscotch
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

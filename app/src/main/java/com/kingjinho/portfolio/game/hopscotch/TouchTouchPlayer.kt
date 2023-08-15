@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch
+package com.kingjinho.portfolio.game.hopscotch
 
 import androidx.compose.ui.graphics.Color
 

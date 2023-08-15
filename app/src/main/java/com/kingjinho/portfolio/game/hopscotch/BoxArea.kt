@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch
+package com.kingjinho.portfolio.game.hopscotch
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
