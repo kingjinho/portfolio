@@ -19,7 +19,7 @@ import androidx.compose.ui.window.PopupProperties
 
 
 @Composable
-fun TouchTouchScreen(modifier: Modifier = Modifier) {
+fun HopScotchGameScreen(modifier: Modifier = Modifier) {
 
     var playerRedHeight by remember {
         mutableStateOf(0.5f)
@@ -28,10 +28,10 @@ fun TouchTouchScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxHeight()
     ) {
-        BoxArea(height = playerRedHeight, player = TouchTouchPlayer.Red) {
+        BoxArea(height = playerRedHeight, player = HopScotchPlayer.Red) {
             playerRedHeight += 0.07f
         }
-        BoxArea(player = TouchTouchPlayer.Blue) {
+        BoxArea(player = HopScotchPlayer.Blue) {
             playerRedHeight -= 0.07f
         }
 
