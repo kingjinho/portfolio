@@ -25,4 +25,8 @@
     <string name="text_drawer_title_help">Help</string>
     <string name="text_drawer_title_logout">Logout</string>
     <string name="text_drawer_description">drawer image %s</string>
+    <string name="text_screen_title_custom_drawer">Custom Drawer</string>
+    <string name="text_screen_title_hopscotch_game">땅따먹기 게임</string>
+    <string name="text_screen_title_touch_touch_game">터치터치 게임</string>
+    <string name="text_screen_title_home">Home</string>
 </resources>
