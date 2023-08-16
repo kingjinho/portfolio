@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.kingjinho.portfolio"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.kingjinho.portfolio"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -70,4 +70,6 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation(libs.coil.compose)
+
+    implementation(libs.androidx.navigation.compose)
 }
