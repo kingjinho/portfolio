@@ -70,6 +70,7 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
 
     implementation(libs.androidx.navigation.compose)
 }
