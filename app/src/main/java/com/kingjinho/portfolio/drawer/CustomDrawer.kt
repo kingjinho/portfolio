@@ -3,6 +3,7 @@ package com.kingjinho.portfolio.drawer
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -21,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -45,14 +47,18 @@ fun CustomDrawer(
     var isClicked by rememberSaveable {
         mutableStateOf(false)
     }
+    val contentMaxHeight = if (isClicked) {
+        0.8f
+    } else {
+        1f
+    }
+
     Box(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Surface(
             color = drawerColor,
-            modifier = modifier
-                .matchParentSize()
+            modifier = modifier.matchParentSize()
         ) {
             if (isClicked) {
                 drawerContent()
@@ -62,13 +68,7 @@ fun CustomDrawer(
         Box(
             modifier = modifier
                 .animateContentSize()
-                .fillMaxHeight(
-                    if (isClicked) {
-                        0.8f
-                    } else {
-                        1f
-                    }
-                )
+                .fillMaxHeight(contentMaxHeight)
                 .fillMaxWidth()
                 .align(Alignment.CenterEnd)
                 .then(
@@ -83,16 +83,24 @@ fun CustomDrawer(
                         modifier
                     }
                 )) {
-            Box(modifier = modifier
-                .matchParentSize()
-                .background(
-                    Color.White,
-                    shape = if (isClicked) MaterialTheme.shapes.large else RectangleShape
-                )
-                .clickable {
-                    isClicked = !isClicked
-                }) {
+            Box(
+                modifier = modifier
+                    .matchParentSize()
+                    .background(
+                        Color.White,
+                        shape = if (isClicked) MaterialTheme.shapes.large else RectangleShape
+                    )
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null, onClick = { isClicked = !isClicked })
+            ) {
                 bodyContent()
+                if (isClicked) {
+                    Surface(
+                        modifier = Modifier.matchParentSize(),
+                        color = Color.White
+                    ){}
+                }
             }
         }
     }
