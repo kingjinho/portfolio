@@ -189,6 +189,7 @@ fun SearchBar(
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
             ),
+            maxLines = 2,
             leadingIcon = {
                 Image(
                     imageVector = Icons.Outlined.Search,
