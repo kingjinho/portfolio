@@ -19,7 +19,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kingjinho.portfolio.drawer.ScreenHomeRental
 import com.kingjinho.portfolio.game.hopscotch.HopScotchGameScreen
+import com.kingjinho.portfolio.game.snake.SnakeGameScreen
 import com.kingjinho.portfolio.game.touchtouch.TouchTouchGameScreen
+import com.kingjinho.portfolio.game.touchtouch.TouchTouchGameViewModel
 
 @Composable
 fun PortfolioApp() {
@@ -42,7 +44,13 @@ fun PortfolioApp() {
         }
 
         composable(Screen.TouchTouchGame.route) {
-            TouchTouchGameScreen()
+            TouchTouchGameScreen(
+                viewModel = TouchTouchGameViewModel()
+            )
+        }
+
+        composable(Screen.SnakeGame.route) {
+            SnakeGameScreen()
         }
 
     }
@@ -51,7 +59,8 @@ fun PortfolioApp() {
 private val screens = listOf(
     Screen.CustomDrawer,
     Screen.HopScotchGame,
-    Screen.TouchTouchGame
+    Screen.TouchTouchGame,
+    Screen.SnakeGame
 )
 
 @Composable
