@@ -29,4 +29,13 @@
     <string name="text_screen_title_hopscotch_game">땅따먹기 게임</string>
     <string name="text_screen_title_touch_touch_game">터치터치 게임</string>
     <string name="text_screen_title_home">Home</string>
+    <string name="text_touch_touch_game_explanation">15초 동안 냥이를 최대한 잡아보자!</string>
+    <string name="text_touch_touch_game_start">게임 스따뚜!</string>
+    <string name="text_touch_touch_game_restart">재도전 가즈아!!!</string>
+    <string name="text_touch_touch_game_new_record">오!!!! 기록경신!!!</string>
+    <string name="text_touch_touch_game_game_over">아,,, 아쉽네요..ㅜ</string>
+    <string name="text_touch_touch_game_game_over_subheader">어케,,,한 판 더 하쉴 !?ㅋ</string>
+    <string name="text_touch_touch_game_remaining_time">남은 시간: %d초</string>
+    <string name="text_touch_touch_game_current_score">현재 점수: %d점</string>
+    <string name="text_screen_title_snake_game">스네이크 게임</string>
 </resources>
