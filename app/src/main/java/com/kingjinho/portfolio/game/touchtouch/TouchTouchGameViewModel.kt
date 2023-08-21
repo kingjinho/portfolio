@@ -14,26 +14,32 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TouchTouchGameViewModel : ViewModel() {
+private const val INITIAL_SCORE = 0
+private const val INITIAL_REMAINING_TIME = 15_000L
+private const val INTERVAL = 1000L
+private const val INITIAL_NUMBER_OF_CATS_TO_DRAW = 30
 
-    private val gameTimeInMills = 15_000L
-    private val interval = 1_000L
+class TouchTouchGameViewModel : ViewModel() {
 
     private val _gameStatus = mutableStateOf<GameStatus>(GameStatus.Ready)
     val gameStatus: State<GameStatus>
         get() = _gameStatus
 
-    private val _score = mutableIntStateOf(0)
+    private val _score = mutableIntStateOf(INITIAL_SCORE)
     val score: State<Int>
         get() = _score
 
-    private val _remainingTime = mutableLongStateOf(gameTimeInMills)
+    private val _numberOfCatsToDraw = mutableIntStateOf(INITIAL_NUMBER_OF_CATS_TO_DRAW)
+    val numberOfCatsToDraw: State<Int>
+        get() = _numberOfCatsToDraw
+
+    private val _remainingTime = mutableLongStateOf(INITIAL_REMAINING_TIME)
     val remainingTime: State<Long>
         get() = _remainingTime
 
     private var countDownTimerJob: Job? = null
 
-    fun gameStart() {
+    fun startGame() {
         _gameStatus.value = GameStatus.Playing
         initCountDownTimer()
         startTimer()
@@ -43,8 +49,9 @@ class TouchTouchGameViewModel : ViewModel() {
         countDownTimerJob = viewModelScope.launch(start = CoroutineStart.LAZY) {
             withContext(Dispatchers.IO) {
                 while (_remainingTime.longValue > 0) {
-                    delay(interval)
-                    _remainingTime.longValue -= interval
+                    delay(INTERVAL)
+                    _numberOfCatsToDraw.intValue += 15
+                    _remainingTime.longValue -= INTERVAL
                 }
                 _gameStatus.value = GameStatus.GameOver
             }
@@ -55,14 +62,23 @@ class TouchTouchGameViewModel : ViewModel() {
         countDownTimerJob?.start()
     }
 
-    fun gameScore() {
-        _score.intValue++
+    fun incrementScore() {
+        viewModelScope.launch {
+            withContext(Dispatchers.Main) {
+                _score.intValue++
+            }
+        }
     }
 
-    fun gameRestart() {
-        _remainingTime.longValue = gameTimeInMills
+    fun resetGame() {
+        _remainingTime.longValue = INITIAL_REMAINING_TIME
+        _numberOfCatsToDraw.intValue = INITIAL_NUMBER_OF_CATS_TO_DRAW
         _gameStatus.value = GameStatus.Ready
-        _score.intValue = 0
+        _score.intValue = INITIAL_SCORE
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 
 }
