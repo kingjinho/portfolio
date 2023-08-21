@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch
+package com.kingjinho.portfolio.game.touchtouch.initial
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf

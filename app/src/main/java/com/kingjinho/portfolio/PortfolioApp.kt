@@ -20,8 +20,8 @@ import androidx.navigation.compose.rememberNavController
 import com.kingjinho.portfolio.drawer.ScreenHomeRental
 import com.kingjinho.portfolio.game.hopscotch.HopScotchGameScreen
 import com.kingjinho.portfolio.game.snake.SnakeGameScreen
-import com.kingjinho.portfolio.game.touchtouch.TouchTouchGameScreen
-import com.kingjinho.portfolio.game.touchtouch.TouchTouchGameViewModel
+import com.kingjinho.portfolio.game.touchtouch.initial.TouchTouchGameScreen
+import com.kingjinho.portfolio.game.touchtouch.initial.TouchTouchGameViewModel
 
 @Composable
 fun PortfolioApp() {
