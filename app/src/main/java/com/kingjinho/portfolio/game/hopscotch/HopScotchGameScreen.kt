@@ -7,7 +7,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -17,32 +17,38 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 
+private const val MAXIMUM_HEIGHT_WEIGHT = 1.0f
+private const val MINIMUM_HEIGHT_WEIGHT = 0.0f
 
 @Composable
 fun HopScotchGameScreen(modifier: Modifier = Modifier) {
 
     var playerRedHeight by remember {
-        mutableStateOf(0.5f)
+        mutableFloatStateOf(0.5f)
     }
 
     Column {
-        PlayerArea(
-            height = playerRedHeight,
-            player = HopScotchPlayer.Red
-        ) {
-            playerRedHeight = (playerRedHeight + 0.07f)
-                .coerceAtMost(1.0f)
+        if(playerRedHeight > MINIMUM_HEIGHT_WEIGHT) {
+            PlayerArea(
+                height = playerRedHeight,
+                player = HopScotchPlayer.Red
+            ) {
+                playerRedHeight = (playerRedHeight + 0.07f)
+                    .coerceAtMost(MAXIMUM_HEIGHT_WEIGHT)
+            }
         }
 
-        PlayerArea(
-            height = 1.0f - playerRedHeight,
-            player = HopScotchPlayer.Blue
-        ) {
-            playerRedHeight = (playerRedHeight - 0.07f)
-                .coerceAtLeast(0.0f)
+        if(1.0f - playerRedHeight > MINIMUM_HEIGHT_WEIGHT) {
+            PlayerArea(
+                height = 1.0f - playerRedHeight,
+                player = HopScotchPlayer.Blue
+            ) {
+                playerRedHeight = (playerRedHeight - 0.07f)
+                    .coerceAtLeast(MINIMUM_HEIGHT_WEIGHT)
+            }
         }
 
-        if (playerRedHeight == 1.0f || playerRedHeight == 0.0f) {
+        if (playerRedHeight == MAXIMUM_HEIGHT_WEIGHT || playerRedHeight == MINIMUM_HEIGHT_WEIGHT) {
 
             Popup(
                 alignment = Alignment.Center,
@@ -50,7 +56,7 @@ fun HopScotchGameScreen(modifier: Modifier = Modifier) {
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(text = "Game Over!!!!")
-                    Text(text = if (playerRedHeight >= 1.0f) "Red Win!!!" else "Blue Win!!!")
+                    Text(text = if (playerRedHeight == MAXIMUM_HEIGHT_WEIGHT) "Red Win!!!" else "Blue Win!!!")
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(onClick = {
                         playerRedHeight = 0.5f
