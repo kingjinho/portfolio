@@ -98,7 +98,7 @@ fun CustomDrawer(
                 if (isClicked) {
                     Surface(
                         modifier = Modifier.matchParentSize(),
-                        color = Color.White
+                        color = Color.Transparent
                     ){}
                 }
             }
