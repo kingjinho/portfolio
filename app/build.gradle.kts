@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.application)
@@ -19,6 +20,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(getValueByKey("storeFilePath"))
+            storePassword = getValueByKey("storePassword")
+            keyAlias = getValueByKey("keyAlias")
+            keyPassword = getValueByKey("keyPassword")
         }
     }
 
@@ -87,4 +97,8 @@ dependencies {
     implementation(libs.coil.svg)
 
     implementation(libs.androidx.navigation.compose)
+}
+
+fun getValueByKey(key: String): String {
+    return gradleLocalProperties(rootDir).getProperty(key)!!
 }
