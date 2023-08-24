@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Portfolio</string>
     <string name="text_location">Location</string>
     <string name="text_location_dropdown_expanded">Location Dropdown Expanded</string>
@@ -31,8 +31,11 @@
     <string name="text_screen_title_home">Home</string>
     <string name="text_touch_touch_game_explanation">15초 동안 냥이를 최대한 잡아보자!</string>
     <string name="text_touch_touch_game_start">게임 스따뚜!</string>
-    <string name="text_touch_touch_game_restart">재도전 가즈아!!!</string>
+    <string name="text_touch_touch_game_restart_when_prev_record_not_broken">재도전 가즈아!!!</string>
+    <string name="text_touch_touch_game_restart_when_prev_record_broken">한계에 도전하기</string>
     <string name="text_touch_touch_game_new_record">오!!!! 기록경신!!!</string>
+    <string name="text_touch_touch_game_prev_world_record">종전 세계기록: %d점</string>
+    <string name="text_touch_touch_game_new_world_record">이제 세계기록!: %d점</string>
     <string name="text_touch_touch_game_game_over">아,,, 아쉽네요..ㅜ</string>
     <string name="text_touch_touch_game_game_over_subheader">어케,,,한 판 더 하쉴 !?ㅋ</string>
     <string name="text_touch_touch_game_remaining_time">남은 시간: %d초</string>
