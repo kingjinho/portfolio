@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -64,12 +65,12 @@ fun TouchTouchGameScreen(
 
         if (viewModel.gameStatus.value == GameStatus.Playing) {
             val remainingTime = viewModel.remainingTime.value
-            val score = viewModel.score.value
+            val curScore = viewModel.score.value
             val numbersOfCatToDraw = viewModel.numberOfCatsToDraw.value
             TouchTouchPlayingScreen(
                 modifier = modifier
                     .fillMaxSize(),
-                score = score,
+                score = curScore,
                 remainingTime = remainingTime,
                 numbersOfCatToDraw = numbersOfCatToDraw,
                 onTouchCat = {
@@ -79,9 +80,13 @@ fun TouchTouchGameScreen(
         }
 
         if (viewModel.gameStatus.value == GameStatus.GameOver) {
+            val curScore = viewModel.score.value
+            val prevScore = viewModel.prevScore.value
             TouchTouchGameOverScreen(
                 modifier = modifier
                     .fillMaxSize(),
+                prevScore = prevScore,
+                curScore = curScore,
                 onClickRestart = {
                     viewModel.resetGame()
                 }
@@ -204,11 +209,29 @@ private fun TouchTouchGameOverScreen(
     curScore: Int = 0,
     onClickRestart: () -> Unit
 ) {
-    val gameOverScreenTitleMessage = if (prevScore < curScore) {
-        stringResource(id = R.string.text_touch_touch_game_new_record)
-    } else {
-        stringResource(id = R.string.text_touch_touch_game_game_over)
-    }
+    val gameOverScreenTitleMessage =
+        buildAnnotatedString {
+            if (prevScore < curScore) {
+                append(stringResource(id = R.string.text_touch_touch_game_new_record))
+                appendLine()
+                appendLine()
+
+                append(
+                    stringResource(
+                        id = R.string.text_touch_touch_game_prev_world_record, prevScore
+                    )
+                )
+                appendLine()
+                append(
+                    stringResource(
+                        id = R.string.text_touch_touch_game_new_world_record,
+                        curScore
+                    )
+                )
+            } else {
+                append(stringResource(id = R.string.text_touch_touch_game_game_over))
+            }
+        }
     Column(
         modifier = modifier
             .padding(horizontal = 20.dp),
@@ -236,8 +259,12 @@ private fun TouchTouchGameOverScreen(
         Button(
             onClick = onClickRestart,
         ) {
+            val btnText = stringResource(
+                id = if (curScore > prevScore) R.string.text_touch_touch_game_restart_when_prev_record_broken
+                else R.string.text_touch_touch_game_restart_when_prev_record_not_broken
+            )
             Text(
-                text = stringResource(id = R.string.text_touch_touch_game_restart),
+                text = btnText,
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.White
             )
