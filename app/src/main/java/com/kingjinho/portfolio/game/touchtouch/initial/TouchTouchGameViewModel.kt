@@ -29,6 +29,10 @@ class TouchTouchGameViewModel : ViewModel() {
     val score: State<Int>
         get() = _score
 
+    private val _prevScore = mutableIntStateOf(INITIAL_SCORE)
+    val prevScore: State<Int>
+        get() = _prevScore
+
     private val _numberOfCatsToDraw = mutableIntStateOf(INITIAL_NUMBER_OF_CATS_TO_DRAW)
     val numberOfCatsToDraw: State<Int>
         get() = _numberOfCatsToDraw
@@ -73,6 +77,7 @@ class TouchTouchGameViewModel : ViewModel() {
     fun resetGame() {
         _remainingTime.longValue = INITIAL_REMAINING_TIME
         _numberOfCatsToDraw.intValue = INITIAL_NUMBER_OF_CATS_TO_DRAW
+        _prevScore.intValue = _score.intValue
         _gameStatus.value = GameStatus.Ready
         _score.intValue = INITIAL_SCORE
     }
