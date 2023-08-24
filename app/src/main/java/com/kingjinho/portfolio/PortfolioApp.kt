@@ -40,7 +40,9 @@ fun PortfolioApp() {
         }
 
         composable(Screen.HopScotchGame.route) {
-            HopScotchGameScreen()
+            HopScotchGameScreen {
+                navController.popBackStack()
+            }
         }
 
         composable(Screen.TouchTouchGame.route) {
