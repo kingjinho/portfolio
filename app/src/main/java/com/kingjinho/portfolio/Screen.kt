@@ -20,4 +20,9 @@ sealed class Screen(val route: String, val titleRes: Int) {
         route = "game/snake",
         titleRes = R.string.text_screen_title_snake_game
     )
+
+    object CurvedSection : Screen(
+        route = "curvedSection",
+        titleRes = R.string.text_screen_title_snake_game
+    )
 }

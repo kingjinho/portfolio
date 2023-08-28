@@ -35,6 +35,10 @@ fun PortfolioApp() {
             )
         }
 
+        composable("curvedSection") {
+            CurvedScreen()
+        }
+
         composable(Screen.CustomDrawer.route) {
             ScreenHomeRental()
         }
@@ -60,6 +64,7 @@ fun PortfolioApp() {
 
 private val screens = listOf(
     Screen.CustomDrawer,
+    Screen.CurvedSection,
     Screen.HopScotchGame,
     Screen.TouchTouchGame,
     Screen.SnakeGame
