@@ -41,4 +41,5 @@
     <string name="text_touch_touch_game_remaining_time">남은 시간: %d초</string>
     <string name="text_touch_touch_game_current_score">현재 점수: %d점</string>
     <string name="text_screen_title_snake_game">스네이크 게임</string>
+    <string name="text_screen_title_curved_section">Curved Section</string>
 </resources>
