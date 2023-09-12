@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "Portfolio"
 include(":app")
 include(":benchmark")
+include(":app:mobile")
+include(":app:wear")
