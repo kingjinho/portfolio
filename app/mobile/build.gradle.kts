@@ -23,20 +23,10 @@ android {
         }
     }
 
-    signingConfigs {
-        create("release") {
-            storeFile = file(getValueByKey("storeFilePath"))
-            storePassword = getValueByKey("storePassword")
-            keyAlias = getValueByKey("keyAlias")
-            keyPassword = getValueByKey("keyPassword")
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -93,8 +83,4 @@ dependencies {
     implementation(libs.coil.svg)
 
     implementation(libs.androidx.navigation.compose)
-}
-
-fun getValueByKey(key: String): String {
-    return gradleLocalProperties(rootDir).getProperty(key)!!
 }

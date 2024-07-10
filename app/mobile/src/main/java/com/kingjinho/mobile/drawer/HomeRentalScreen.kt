@@ -58,12 +58,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.kingjinho.mobile.ui.theme.PortfolioTheme
 import com.kingjinho.portfolio.R
-import com.kingjinho.portfolio.drawer.CustomDrawer
-import com.kingjinho.portfolio.drawer.Drawer
-import com.kingjinho.portfolio.drawer.LocationItem
-import com.kingjinho.portfolio.drawer.RentalSection
-import com.kingjinho.portfolio.drawer.getRandomImageRes
-import com.kingjinho.portfolio.drawer.locationList
 
 
 @Composable

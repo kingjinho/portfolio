@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game
+package com.kingjinho.mobile.game
 
 sealed class GameStatus {
     object Ready : GameStatus()

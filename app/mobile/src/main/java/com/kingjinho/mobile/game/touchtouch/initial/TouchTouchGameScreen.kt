@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch.initial
+package com.kingjinho.mobile.game.touchtouch.initial
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -34,7 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kingjinho.portfolio.R
-import com.kingjinho.portfolio.game.GameStatus
+import com.kingjinho.mobile.game.GameStatus
 import kotlin.random.Random
 
 @Composable

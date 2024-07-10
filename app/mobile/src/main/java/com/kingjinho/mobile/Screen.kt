@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.com.kingjinho.mobile
+package com.kingjinho.mobile
 
 import com.kingjinho.portfolio.R
 
@@ -26,5 +26,10 @@ sealed class Screen(val route: String, val titleRes: Int) {
     object CurvedSection : Screen(
         route = "curvedSection",
         titleRes = R.string.text_screen_title_curved_section
+    )
+
+    object TicTacToeGame: Screen(
+        route = "game/tictactoe",
+        titleRes = R.string.text_screen_title_tic_tac_toe_game
     )
 }

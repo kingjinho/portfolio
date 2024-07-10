@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.snake
+package com.kingjinho.mobile.game.snake
 
 import androidx.compose.runtime.Composable
 

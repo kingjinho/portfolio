@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.drawer
+package com.kingjinho.mobile.drawer
 
 sealed class Location {
     object Jakarta : Location()

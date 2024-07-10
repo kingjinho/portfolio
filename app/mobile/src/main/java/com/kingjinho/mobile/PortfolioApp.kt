@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.com.kingjinho.mobile
+package com.kingjinho.mobile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,10 +19,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kingjinho.mobile.curvedSection.CurvedSection
 import com.kingjinho.mobile.drawer.ScreenHomeRental
-import com.kingjinho.portfolio.game.hopscotch.HopScotchGameScreen
-import com.kingjinho.portfolio.game.snake.SnakeGameScreen
-import com.kingjinho.portfolio.game.touchtouch.initial.TouchTouchGameScreen
-import com.kingjinho.portfolio.game.touchtouch.initial.TouchTouchGameViewModel
+import com.kingjinho.mobile.game.hopscotch.HopScotchGameScreen
+import com.kingjinho.mobile.game.snake.SnakeGameScreen
+import com.kingjinho.mobile.game.tictactoe.TicTacToeGameScreen
+import com.kingjinho.mobile.game.touchtouch.initial.TouchTouchGameScreen
+import com.kingjinho.mobile.game.touchtouch.initial.TouchTouchGameViewModel
 
 @Composable
 fun PortfolioApp() {
@@ -60,6 +61,9 @@ fun PortfolioApp() {
             SnakeGameScreen()
         }
 
+        composable(Screen.TicTacToeGame.route) {
+             TicTacToeGameScreen()
+        }
     }
 }
 

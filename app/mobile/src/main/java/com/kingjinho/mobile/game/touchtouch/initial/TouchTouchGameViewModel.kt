@@ -1,4 +1,4 @@
-package com.kingjinho.portfolio.game.touchtouch.initial
+package com.kingjinho.mobile.game.touchtouch.initial
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kingjinho.portfolio.game.GameStatus
+import com.kingjinho.mobile.game.GameStatus
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
