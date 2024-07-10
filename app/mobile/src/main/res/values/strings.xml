@@ -43,4 +43,5 @@
     <string name="text_screen_title_snake_game">스네이크 게임</string>
     <string name="text_screen_title_curved_section">Curved Section</string>
     <string name="text_screen_curved_section_greeting">Good Morning,</string>
+    <string name="text_screen_title_tic_tac_toe_game">Tic Tac Toe</string>
 </resources>
